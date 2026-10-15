@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, My Love ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #080808;
+    color: #fff;
+    font-family: Georgia, serif;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    color: #ffd700;
+}
+
+section {
+    padding: 65px 18px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    background: #ffd700;
+    color: #080808;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 14px 25px;
+    margin: 10px;
+}
+
+button:hover {
+    background: #ffe766;
+    transform: scale(1.03);
+}
+
+/* PASSWORD SCREEN */
+#lockScreen {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.lock-box {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px 20px;
+    border: 1px solid #ffd700;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #ffd70022;
+}
+
+.lock-box h1 {
+    margin-bottom: 18px;
+}
+
+.lock-box p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 15px auto;
+    border: 1px solid #ffd700;
+    border-radius: 10px;
+    background: #151515;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+}
+
+#errorMessage {
+    color: #ff7777;
+    min-height: 20px;
+}
+
+/* MAIN WEBSITE */
+#mainWebsite {
+    display: none;
+}
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 18px;
+    background: radial-gradient(ellipse at center, #302600 0%, #080808 70%);
+}
+
+.hero h1 {
+    font-size: clamp(36px, 7vw, 65px);
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 19px;
+    line-height: 1.8;
+    max-width: 650px;
+}
+
+.heart {
+    color: #ffd700;
+    font-size: 38px;
+    margin: 18px;
+    animation: beat 1.2s infinite;
+}
+
+@keyframes beat {
+    50% { transform: scale(1.2); }
+}
+
+.section-title {
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.content {
+    max-width: 750px;
+    margin: auto;
+    line-height: 1.9;
+    font-size: 17px;
+    color: #eee;
+}
+
+/* LOVE LETTER */
+.letter {
+    max-width: 750px;
+    margin: auto;
+    padding: 30px 22px;
+    border: 1px solid #b89b00;
+    border-radius: 18px;
+    background: #111;
+    line-height: 2;
+    text-align: left;
+    white-space: pre-line;
+}
+
+/* PHOTO GALLERY */
+.gallery {
+    max-width: 750px;
+    margin: auto;
+}
+
+.photo-frame {
+    width: 100%;
+    height: min(65vh, 520px);
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffd700;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #151515;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.photo-caption {
+    margin-top: 15px;
+    color: #ffd700;
+    font-size: 17px;
+}
+
+.gallery-controls {
+    margin-top: 10px;
+}
+
+#photoCount {
+    color: #ddd;
+    font-size: 15px;
+}
+
+/* REASONS */
+.reasons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.reason-card {
+    border: 1px solid #8f7800;
+    background: #111;
+    padding: 23px 18px;
+    border-radius: 15px;
+    line-height: 1.7;
+    transition: 0.3s;
+}
+
+.reason-card:hover {
+    transform: translateY(-5px);
+    border-color: #ffd700;
+}
+
+.reason-card h3 {
+    margin-bottom: 10px;
+}
+
+/* FINAL MESSAGE */
+.final-message {
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(ellipse at center, #302600 0%, #080808 70%);
+}
+
+.final-message p {
+    max-width: 650px;
+    margin: 20px auto;
+    line-height: 1.9;
+    font-size: 18px;
+    padding: 0 10px;
+}
+
+footer {
+    padding: 25px 15px;
+    color: #bba638;
+}
+
+/* FLOATING HEARTS */
+.floating-heart {
+    position: fixed;
+    bottom: -30px;
+    color: #ffd700;
+    pointer-events: none;
+    z-index: 10;
+    animation: floatUp 6s linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    15% { opacity: 0.8; }
+    100% {
+        transform: translateY(-110vh) rotate(35deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    section { padding: 50px 15px; }
+    .section-title { font-size: 26px; }
+    .photo-frame { height: 55vh; }
+    button { font-size: 15px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="lockScreen">
+    <div class="lock-box">
+        <h1>❤️SUPRISE BUBU❤️</h1>
+        <p>GUESS KARO PASSWORD✨</p>
+
+        <form id="passwordForm">
+            <input
+                type="password"
+                id="passwordInput"
+                placeholder="Enter our secret password"
+                autocomplete="off"
+                required
+            >
+            <button type="submit">OPEN❤️</button>
+        </form>
+
+        <p id="errorMessage"></p>
+    </div>
+</div>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" src="song.mp3" loop preload="auto"></audio>
+
+<!-- MAIN WEBSITE -->
+<div id="mainWebsite" style="display: none;">
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="heart">❤️</div>
+        <h1>Happy Birthday,SUMIT!</h1>
+        <p>
+            its your birthday babyyyyy mera shonaa mere rasgulle hehe mere   favorite person. tum meri choti si duniya mei roshni ho tumhe pta hai bhi?bohot special ho mere liye!! yeh chotu sa suprise bohot mushkil se chatgpt se bheek mang mang ke yeh banai hai bohot time laga bana ne mei tumhare birthday se pehle bangya finally i hope tumhe pasand aaye yeh bubu❤️
+        </p>
+        <div class="heart">✨</div>
+        </div>
+
+    <!-- LOVE LETTER -->
+    <section>
+        <h2 class="section-title">💌 CHOTU SA LETTER FOR MY CHOTU SA BACCHA</h2>
+        <div class="letter">TO MY BIRTHDAY BOY DEAREST SUMIT/DADDY,
+
+
+sumit prasad tum mere liye bohot bohot bohottt special ho, jab hum mile January 18th so called monkey app mai tum apne dosto ke sath timepass karre sabse flirt karte hue pta nhi kitni saari ladkio se baat kari hogi but ek moment I think dopeher 3 baje ke aas paas hum mile hamari pyari pyari convo hui utna jyada mujhe kuch yaad nhi par hn maine tumhare dost se kaha tha ki headphones tumhe dene aur fir mere dil ki ghanta baji tang tang tang hehe very flimy par hn baby mujhe tumhari awaj bohot achi lagi, tumhari awaj bohot calming but sexy at the same time hai okay moving forward jab tum apna Instagram account type karre the hum unfortunately disconnect hogye aur mujhe yeh yaad hai ki uske baad maine apna phone band karke side mei rakh dia tha aur mai sogyi thi fir mai uthi aur maine tumhare dost ko follow request bheji hoping tum mujhe uske account mei milo aur hn tum mile ayyayayay maine fir tumhare account ko aise stalk kara na poora ending to starting upar se niche every corner aur fir mai sochri thi ki yeh ek din bohot famous hoga :) fast forward tumne mujhe text kara asking mai (chand ki photo)ini hu na hehe so cute yaar baby maine bolo hnnn aur fir hamari baat shuru hui, mai tumse addict hogyi mujhe tum bohot cool lage, mai discord tumhare awaj sunne ati thi tum funny funny jokes crack karke the aur did I mention TUMHARI SEXYYYYY AWAJ oh godddd kill me (hn tum hi mere god ho and I want you to kill me bed pe hehehehe) okay moving forward hum bohot flirt karte the ek dusre ke sath, maine galtiya kari mujhe uss chiz ke liye bura laga par you know mujhe tumse kab real pyar hua jab tumne merse who chiz ke bare mei pucha calmly meri suni merpe trust kara aur continue kara baat karna mai uss raat ko kitna roi thi mujhe laga tum meri kyu sunoge tum toh apni dost ki sunoge par hn tumne meri suni aur mujhe maaf kara uske liye I love you so much sumit mai kabhi nhi bhulungi yeh chiz tum bohot pyare aur sweet ho yaar mai tumhe kisike sath share karna nhi chahti. OKAAY ab yeh saari past ki chize bhool jate hai, ab baat karte hai uss raat ki jab maine tumhe apni feelings ke bare mei bataya rote hue par tum gandu no.1 ko pta hi nhi mai ro rhi thi taliyaa waaah bohot badiya sumit, anyways fir kya tumpe koi option tha nhi tumne just boldia hn idk tum mujhse pyar bhi karte the ki nhi par hn koi ek ladki se subhe ke 6 baje tak baat kyu karega akele mei if this is not love than what is mujhe nhi pata mere liye toh yahi pyar hai apne loved ones se baat karna time spend karna. fir hui hamari dating era start jisme bohoooooooot sare ups and downs aaye, hum dono disappoint hue ek dusre se, breakup tak agyi thi baat, daily jadga, gussa, rona dhona and what not par you know yeh saari chiz bilkul bhi matter nhi karti thodi si bhi nhi kyuki humne yeh saari chizo ko lead karne hi nhi dia hum chize sort kardete the end mei kyuki hum ek dusre ke bina nhi jee skte(this is how I feel btw) BOHOT JYADA grateful hu tumhare liye, tum jaise ladke mujhe mile ho baby, tum bohot jyada caring ho, possessive ho(exactly how i like), cool ho, nonchalant ho, handsome cute pretty hot talented smart strong bada lund beautiful gorgeous sexy and the list goes on hehe. sumit mujhe tum bohot jyada pasand ho bohot hi jyada maine tumhare sath apna poora future imagine karlia hai mai nhi chahti koi aisa incident ho jisse yeh chix tut jaye hum ek dusre ko hamesha support karenge babya and mai tumahare present aur future ka ek pyara sa hissa banna chahti hu, tumahare journey mei sath dena chahti hu aur tumhe successful hote dekhna chahti hu (thuthuthu meri nazar na lag jaye hehe). tumhare liye mai hamesha pray karti rahungi, tumhare success ke liye, tumhare health aur hamare relationship ke liye bhi. okay cumming back to tumhari awaj, did i mention ki mujhe tumhari awaj bohottttttt pasand hai? hehe toh mujhe tumhari awaj pasand hai toh obviously joh bhi tumhare muh se nikalta woh bhi pasand hoga, jaise ki tum mera naam lete ho,jab mai tumhe call karti hu aur tum heylooooo baby bolte ho aaah fuck yaar kitne cute ho tum kha jaungi mai tumhe ek din d=fry karke, aur tumhara itna marunga na baby tum sacchi mei mujhe maroge mujhe? mai tumhari choti si nanni si pyari si moti si bacchi hu naaaaaa aise nhi bolte baby, fir tumhara yapping session se Pehle ek din pta hai kya hua fir tum bolte jate bolte jate ho fuck baby tumhari awaj sunke i cant control meri ungliya apne aap chut ke andar chali jati heheh, aur fir jab tum bolte ho aur bta sexy kya haal hai aaaragagahaghagahag oh my god yaar no words, aur tumhara OG andar kya pehna hai yeh sune bina mera din acha nhi jata sach batau toh, mujhe tumahre sath baat karna bohottt pasand hai baby aur hn tumhari hassi bhai mere andar ki butterflies karate salsa cartwheels wwe sab karne lag jati hai mann karta hai tumahre gaal pakad ke khich khich ke laal kardu!!!!! har hassi, gam, dukh, baate, memories sbkuch mere liye bohot mean karti hai baby, mai sach mei bohot lucky aur grateful hu tumhare sath yeh moments share karne liye i hope hum future mei bhi bohot happy rahenge ke dusre ke sath aur hn mujhe nhi pta end kaise karte hai letter ko toh bs yaha end hota hai mera letter kash aisa kuch hota ki maine tumhe yeh handwritten bheja hota par koini yeh bhi maine pyar se type kia hai (time update oct 10 6:14 tum abhi gym mei ho baby hehe tumne promise kia tha 6 baje se Pehle aaoge par suar hop tum timing sense hi nhi hai sala baat mat karo) anyways baby I LOVE YOU SOOSSOSOSOSOSOSOSOOSOSOSOSOSOSOSOSOS MUCH MUAAAAAH
+                                       
+                                                                                               -FROM: 
+YOUR PYAARI SI BACCHI, TUMHARI BIWI CHANNIE ❤️
+
+</div>
+    </section>
+
+
+<!-- PHOTO GALLERY -->
+<section>
+    <h2 class="section-title">📸 MERE FAVORITE PHOTOS</h2>
+
+    <div class="gallery">
+        <div class="photo-frame">
+            <img
+                id="galleryPhoto"
+                src="photo1.jpg"
+                alt="Our memory"
+                title="Tap to see the next photo"
+                onclick="showPhoto(currentPhoto + 1)"
+            >
+        </div>
+
+        <p class="photo-caption" id="photoCaption">
+            Meri favorite picture, with my favorite person ❤️
+        </p>
+
+        <div class="gallery-controls">
+            
+<button
+    type="button"
+    id="prevPhoto"
+>
+    ❮ Previous
+</button>
+
+<span id="photoCount">1 / 27</span>
+
+<button
+    type="button"
+    id="nextPhoto"
+>
+    Next ❯
+</button>
+
+        </div>
+    </div>
+</section>
+
+    <!-- REASONS -->
+    <section>
+        <h2 class="section-title">💛 Reasons Why I Love You</h2>
+
+        <div class="reasons">
+            <div class="reason-card">
+                <h3>❤️ Your Voice and Smile</h3>
+                tumhari awaj aur hassi sunke it makes my day sumit tumahri awaj sunke muthi marlu mai hehehe  
+            </div>
+
+            <div class="reason-card">
+                <h3>🥹 Your Care</h3>
+                chote chote chize tum joh bolte ho mujhe bohot pyari lagti hai, mana karte ho, jeolousy, possiveness sabkuch bohot pasand hai 
+            </div>
+
+            <div class="reason-card">
+                <h3>✨ Your Heart</h3>
+                tum bohot ache insaan ho bubu caring ho, smart ho, mujhe saari chizo ka knowledge dete ho even though mai nhi sunti hehe, mujhe valo sikhate ho, meri bakwas baat sunte ho i love you bubuuu
+            </div>
+
+            <div class="reason-card">
+                <h3>🤗 Your Lollipop </h3>
+               fuck yaar lollipop ke bare mei kya bolu big and thick what exactly my tight pussy needs, the veinsss, the coral pink tip fuck kab dekhne ko milega irl mei 
+            </div>
+
+            <div class="reason-card">
+                <h3>💫 Your Dreams</h3>
+              tumhe apna dreams pursue karna hai baby thik hai apne kaam pe ache se focus karo mai tumhara hamesha sath dungi aur tumhare liye pray karungi famous banna aur ache kase paise kamana mujhe chiji leke dena okayyy 
+            </div>
+
+            <div class="reason-card">
+                <h3>💖 Simply You</h3>
+                in the end yeh reasons ki jarurat nhi hai mujhe tumhari saari chize pasand hai i love you for being you baby
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL MESSAGE -->
+    <section class="final-message">
+        <h2 class="section-title">❤️ One Last Thing...</h2>
+        <p>
+          baby tum 22 ke hogye par abhi bhi tum mere pyare se 2 saal ke baby ho iss naye saal mei bs yeh chahti hu ki tum hamesha kush rho aur haste rho, apne dreams poore karna, hamesha aise hi rehna jaise ho aur famous hone ke baad mujhe bhool mata jana baby bohot marungi anyways apna day enjoy karoo yayyy 
+        </p>
+        <h2>Happy Birthday, My Love! 🎂</h2>
+        <div class="heart">❤️</div>
+        <p>present ho ya future, mai hamesha tumhara sath dungi, har situation mei, har moment mei.
+aaj, kal aur hamehsa ke liye, its you and me, forever. ❤️🫶🥹
+    </section>
+
+    <footer>
+        made by tumhari pyari bubu ❤️
+    </footer>
+
+</div>
+
+
+<script>
+/* PASSWORD AND MUSIC */
+const correctPassword = "sumichan";
+const passwordForm = document.getElementById("passwordForm");
+const passwordInput = document.getElementById("passwordInput");
+const errorMessage = document.getElementById("errorMessage");
+const lockScreen = document.getElementById("lockScreen");
+const mainWebsite = document.getElementById("mainWebsite");
+const bgMusic = document.getElementById("bgMusic");
+
+passwordForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (passwordInput.value.trim() === correctPassword) {
+        lockScreen.style.display = "none";
+        mainWebsite.style.display = "block";
+
+        bgMusic.volume = 0.8;
+        bgMusic.play().catch(function(error) {
+            console.log("Music playback was blocked:", error);
+        });
+
+        window.scrollTo(0, 0);
+    } else {
+        errorMessage.textContent = "Oops galat hai, try again baby ❤️";
+        passwordInput.value = "";
+        passwordInput.focus();
+    }
+});
+</script>
+
+<script>
+// PHOTO GALLERY
+let currentPhoto = 1;
+const totalPhotos = 27;
+
+const captions = [
+"mera pyara golu molu sa baccha ❤️",
+"mera sher puttarrr 🥹",
+"mera handsome cool nonchalant boy ❤️",
+"love at first sight 💕",
+"mere rasgulle plus fav shirt 🫶",
+"isme itne hot lagre ho na fuck ✨",
+"cutu sa chotu sa baby mera 💖",
+"idhar aao pilati hu 🥰",
+" muaaah suar ❤️",
+"hottie sexy banda mera 🥵",
+"divaaa 💕",
+"suno naaa 😝",
+"potty karli? 🤭 ",
+"my favorite smile 😊",
+"baddieee 🫦",
+"sexy body tumhare chuche dabane hai 😈",
+"i love you so much baby ❤️",
+"hehe tumhare pyare cute se daant 😁",
+"baddieee part 2 🫦",
+"muwaaaah ❤️",
+"nangu pangu cutieee 💕",
+"fuck me daddy 👅 ",
+"apke pepporonies mujhe bohot pasand hai 👅",
+"mere armpits sungne ke baad 😝",
+"mera suarrrr ❤️",
+"daddy let me know that I'm your only girl, the only man that I need in this gangster world is you 😎",
+"yaayyy kuchupuchu ka birthday haiii 🎂"
+];
+
+function showPhoto(photoNumber) {
+    currentPhoto = ((photoNumber - 1 + totalPhotos) % totalPhotos) + 1;
+
+    document.getElementById("galleryPhoto").src = "photo" + currentPhoto + ".jpg";
+    document.getElementById("galleryPhoto").alt = "Our memory " + currentPhoto;
+    document.getElementById("photoCaption").textContent = captions[currentPhoto - 1];
+    document.getElementById("photoCount").textContent = currentPhoto + " / " + totalPhotos;
+}
+
+document.getElementById("prevPhoto").addEventListener("click", function() {
+    showPhoto(currentPhoto - 1);
+});
+
+document.getElementById("nextPhoto").addEventListener("click", function() {
+    showPhoto(currentPhoto + 1);
+});
+
+document.getElementById("galleryPhoto").addEventListener("click", function() {
+    showPhoto(currentPhoto + 1);
+});
+
+showPhoto(1);
+
+// FLOATING HEARTS
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.textContent = Math.random() > 0.5 ? "♥" : "♡";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (14 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(function() {
+        heart.remove();
+    }, 8000);
+}
+
+setInterval(createHeart, 700);
+</script>
+
+</body>
+</html>
