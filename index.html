@@ -496,26 +496,28 @@ const captions = [
 function showPhoto(photoNumber) {
     currentPhoto = ((photoNumber - 1 + totalPhotos) % totalPhotos) + 1;
 
-    document.getElementById("galleryPhoto").src = "photo" + currentPhoto + ".jpg";
-    document.getElementById("galleryPhoto").alt = "Our memory " + currentPhoto;
-    document.getElementById("photoCaption").textContent = captions[currentPhoto - 1];
-    document.getElementById("photoCount").textContent = currentPhoto + " / " + totalPhotos;
+    document.getElementById("galleryPhoto").src =
+        "photo" + currentPhoto + ".jpg";
+
+    document.getElementById("galleryPhoto").alt =
+        "Our memory " + currentPhoto;
+
+    document.getElementById("photoCaption").textContent =
+        captions[currentPhoto - 1] || "";
+
+    document.getElementById("photoCount").textContent =
+        currentPhoto + " / " + totalPhotos;
 }
 
-document.getElementById("prevPhoto").addEventListener("click", function() {
+document.getElementById("prevPhoto").addEventListener("click", function () {
     showPhoto(currentPhoto - 1);
 });
 
-document.getElementById("nextPhoto").addEventListener("click", function() {
-    showPhoto(currentPhoto + 1);
-});
-
-document.getElementById("galleryPhoto").addEventListener("click", function() {
+document.getElementById("nextPhoto").addEventListener("click", function () {
     showPhoto(currentPhoto + 1);
 });
 
 showPhoto(1);
-
 // FLOATING HEARTS
 function createHeart() {
     const heart = document.createElement("div");
